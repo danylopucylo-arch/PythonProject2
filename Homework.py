@@ -1,23 +1,33 @@
-class Task:
-    def __init__(self, name, description, deadline, state):
-        self.name = name
-        self.description = description
-        self.deadline = deadline
-        self.state = state
-    def get_info(self):
-        return f"Task: {self.name}, {self.description}, {self.deadline}, {self.state}"
+from os import name
 
-class TaskManager:
-    def __init__(self):
-        self.tasks = []
-    def add_task(self, name, description, deadline, state):
 
-     def show_tasks(self):
-        for task in self.tasks:
-            print(task.get_info())
+class Animal:
+        def __init__(self, name, age, furcolor):
+            self.name = name
+            self.age = age
+            self.furcolor = furcolor
 
-Project1 = Task(name = "Project1", description = "team biology project", deadline = "05.11", state = "done")
-CleanUp = Task(name = "CleanUp", description = "Clean my room and cook dinner", deadline = "tomorrow", state = "not done")
+class Dog(Animal):
+        def __init__(self,name ,age ,furcolor , tail, eyes_color):
+            self.furcolor = furcolor
+            self.tail = tail
+            self.eyes_color = eyes_color
+            self.name = name
+            self.age = age
+        def look_at_Puppy(self):
+            print(f"Look at him {self.name} he is {self.age} years old")
+class Cat(Animal):
+        def __init__(self,age,name ,furcolor, tail, height):
+            self.age = age
+            self.furcolor = furcolor
+            self.tail = tail
+            self.height = height
+            self.name = name
 
-print(Project1.get_info())
-print(CleanUp.get_info())
+        def Look_at_Kitty(self):
+            print(f"Look at her {self.name} she is {self.age} years old and she is {self.furcolor} her tail is {self.tail} her height is {self.height}")
+
+sphinks = Cat(3,"Betty", "without fur", "long-middle","DarkBlue")
+Buldog = Dog("Jax", 5, "BrightBrown", "short","BrightGreen" )
+sphinks.Look_at_Kitty()
+Buldog.look_at_Puppy()
