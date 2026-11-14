@@ -1,33 +1,26 @@
-from os import name
+import sqlite3
 
+connection = sqlite3.connect("shop.sl3")
+cur = connection.cursor()
+print("Підключення успішне")
 
-class Animal:
-        def __init__(self, name, age, furcolor):
-            self.name = name
-            self.age = age
-            self.furcolor = furcolor
+cur.execute("CREATE TABLE IF NOT EXISTS animals (type TEXT,name TEXT)")
 
-class Dog(Animal):
-        def __init__(self,name ,age ,furcolor , tail, eyes_color):
-            self.furcolor = furcolor
-            self.tail = tail
-            self.eyes_color = eyes_color
-            self.name = name
-            self.age = age
-        def look_at_Puppy(self):
-            print(f"Look at him {self.name} he is {self.age} years old")
-class Cat(Animal):
-        def __init__(self,age,name ,furcolor, tail, height):
-            self.age = age
-            self.furcolor = furcolor
-            self.tail = tail
-            self.height = height
-            self.name = name
+#cur.execute("INSERT INTO animals (type, name) VALUES ('савець', 'Мавпа')")
+#cur.execute("INSERT INTO animals (type, name) VALUES ('птахи', 'орел')")
+#cur.execute("INSERT INTO animals (type, name) VALUES ('земноводні', 'Морська черепаха')")
+connection.commit()
 
-        def Look_at_Kitty(self):
-            print(f"Look at her {self.name} she is {self.age} years old and she is {self.furcolor} her tail is {self.tail} her height is {self.height}")
+cur.execute("SELECT * FROM animals")
+print(cur.fetchall())
 
-sphinks = Cat(3,"Betty", "without fur", "long-middle","DarkBlue")
-Buldog = Dog("Jax", 5, "BrightBrown", "short","BrightGreen" )
-sphinks.Look_at_Kitty()
-Buldog.look_at_Puppy()
+cur.execute("SELECT * FROM animals WHERE type = 'савець'")
+print(cur.fetchall())
+
+cur.execute("UPDATE animals SET name = сокіл WHERE name = 'орел'  ")
+connection.commit()
+
+cur.execute("DROP TABLE animals")
+connection.commit()
+
+connection.close()
